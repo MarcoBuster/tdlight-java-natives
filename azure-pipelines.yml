@@ -10,11 +10,17 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: |
+    chmod +x travis/*.sh
+    apt-get update -y
+    apt-get install -y make git zlib1g-dev libssl-dev gperf cmake clang-10 libc++-10-dev libc++abi-10-dev ccache maven python3 python3-pip php7.2-cli openjdk-11-jdk
+  displayName: 'Pre installation'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    ./travis/install_dependencies.sh
+  displayName: 'Install deps'
+
+- script: |
+    ./travis/build.sh
+  displayName: 'Build'
 
