@@ -11,14 +11,14 @@ trigger:
 strategy:
   matrix:
     linux:
-      imageName: "ubuntu-20.04"
-      vmImage: "ubuntu-latest"
+      imageName: "ubuntu-latest"
     mac:
       imageName: "macos-latest"
-      vmImage: "ubuntu-latest"
     windows:
       imageName: "azure-latest"
-      vmImage: "ubuntu-latest"
+
+pool:
+  vmImage: $(imageName)
 
 steps:
 - script: |
