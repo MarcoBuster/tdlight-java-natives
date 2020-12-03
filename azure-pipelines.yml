@@ -15,7 +15,7 @@ strategy:
     mac:
       imageName: "macos-latest"
     windows:
-      imageName: "azure-latest"
+      imageName: "windows-latest"
 
 pool:
   vmImage: $(imageName)
