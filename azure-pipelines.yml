@@ -16,7 +16,6 @@ strategy:
       imageName: "macos-10.14"
     windows:
       imageName: "vs2017-win2016"
-    maxParallel: 3
 
 steps:
 - script: |
