@@ -1,7 +1,7 @@
 #!/bin/bash -e
 set -e
 
-source ./travis/setup_variables.sh
+source ./azure/setup_variables.sh
 
 cd ./scripts/
 

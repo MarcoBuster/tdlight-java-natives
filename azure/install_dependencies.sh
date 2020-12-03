@@ -2,11 +2,11 @@
 set -e
 
 # ====== Setup environment variables
-source ./travis/setup_variables.sh
+source ./azure/setup_variables.sh
 
-if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+if [[ "$AZURE_OS_NAME" == "linux" ]]; then
   echo "==Linux===="
-elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+elif [[ "$AZURE_OS_NAME" == "osx" ]]; then
   echo "==OSX======"
   export PYTHON=36
   brew install swig;
@@ -20,7 +20,7 @@ elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   export PATH=$PATH:$(python3 -c "import site; print(site.USER_BASE)")/bin;
   brew install gperf openssl coreutils
 
-  # Precompile .tlo files because of a bug in travis/macOs
+  # Precompile .tlo files because of a bug in azure/macOs
   cd ./implementations/tdlight/td/generate/tl-parser/
   echo "Configuring tl-parser"
   ./configure
@@ -36,7 +36,7 @@ elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   echo "Running tl-parser on td_api"
   ./tl-parser/bin/tl-parser -v -e scheme/td_api.tlo scheme/td_api.tl
   echo "Done .tlo"
-elif [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
+elif [[ "$AZURE_OS_NAME" == "windows" ]]; then
   echo "==Windows=="
   choco install ccache
   choco install make
@@ -58,7 +58,7 @@ elif [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
   cd $VCPKG_DIR
   ./vcpkg integrate install
 else
-  echo "Unrecognized os: $TRAVIS_OS_NAME"
+  echo "Unrecognized os: $AZURE_OS_NAME"
   exit 1
 fi
  
