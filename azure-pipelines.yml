@@ -22,6 +22,7 @@ pool:
 
 variables:
   AZURE_OS_NAME: $(Agent.OS)
+  AZURE_OS_ARCH: $(Agent.OSArchitecture)
 
 steps:
 - script: |
@@ -29,15 +30,13 @@ steps:
     chmod +x azure/*.sh
   displayName: 'Pre installation'
 
-- script: |
-    ./azure/install_dependencies.sh
+- task: Bash@3
+  inputs:
+    targetType: 'filePath'
+    filePath: './azure/install_dependencies.sh'
   displayName: 'Install deps'
-  env:
-    AZURE_OS_NAME: $(Agent.OS)
 
 - script: |
-    sudo ./azure/build.sh
+    ./azure/build.sh
   displayName: 'Build'
-  env:
-    AZURE_OS_NAME: $(Agent.OS)
 

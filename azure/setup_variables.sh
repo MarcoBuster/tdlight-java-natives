@@ -4,8 +4,8 @@ set -e
 # ====== Variables
 export REVISION=$AZURE_BUILD_NUMBER
 export MAVEN_OPTS="--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/javax.crypto=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED"
-if [ "$AZURE_CPU_ARCH" = "arm64" ]; then
-    export CPU_ARCHITECTURE_NAME="aarch64"
+if [ "$AZURE_CPU_ARCH" = "ARM" ]; then
+    export CPU_ARCHITECTURE_NAME="arm"
     export CPU_CORES_NUM="2"
 else
     CPU_ARCHITECTURE_NAME="$(tr '[:upper:]' '[:lower:]'<<<"${AZURE_CPU_ARCH}")"
@@ -40,7 +40,7 @@ elif [[ "$AZURE_OS_NAME" == "Darwin" ]]; then
   export JAVA_INCLUDE_PATH="$(/usr/libexec/java_home -v 14)/include"
   export CPU_CORES=" -- -j${CPU_CORES_NUM}"
 elif [[ "$AZURE_OS_NAME" == "Linux" ]]; then
-	if [[ "$CPU_ARCHITECTURE_NAME" = "aarch64" ]]; then
+	if [[ "$CPU_ARCHITECTURE_NAME" = "ARM" ]]; then
 		export CMAKE_EXTRA_ARGUMENTS=""
 		export CXXFLAGS="-static-libgcc -static-libstdc++"
 	else
