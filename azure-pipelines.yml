@@ -18,8 +18,6 @@ strategy:
       imageName: "azure-latest"
 
 steps:
-- task: 
-
 - script: |
     chmod +x azure/*.sh
     sudo apt-get update -y
