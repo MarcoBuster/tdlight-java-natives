@@ -1,4 +1,6 @@
 #!/bin/bash -e
+echo "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa: $AZURE_OS_NAME"
+
 set -e
 
 # ====== Setup environment variables
