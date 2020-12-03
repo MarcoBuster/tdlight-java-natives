@@ -30,7 +30,7 @@ steps:
   displayName: 'Pre installation'
 
 - script: |
-    sudo ./azure/install_dependencies.sh
+    ./azure/install_dependencies.sh
   displayName: 'Install deps'
   env:
     AZURE_OS_NAME: $(Agent.OS)
