@@ -4,9 +4,9 @@ set -e
 # ====== Setup environment variables
 source ./azure/setup_variables.sh
 
-if [[ "$AZURE_OS_NAME" == "linux" ]]; then
+if [[ "$AZURE_OS_NAME" == "Linux" ]]; then
   echo "==Linux===="
-elif [[ "$AZURE_OS_NAME" == "osx" ]]; then
+elif [[ "$AZURE_OS_NAME" == "Darwin" ]]; then
   echo "==OSX======"
   export PYTHON=36
   brew install swig;
@@ -36,7 +36,7 @@ elif [[ "$AZURE_OS_NAME" == "osx" ]]; then
   echo "Running tl-parser on td_api"
   ./tl-parser/bin/tl-parser -v -e scheme/td_api.tlo scheme/td_api.tl
   echo "Done .tlo"
-elif [[ "$AZURE_OS_NAME" == "windows" ]]; then
+elif [[ "$AZURE_OS_NAME" == "Windows_NT" ]]; then
   echo "==Windows=="
   choco install ccache
   choco install make

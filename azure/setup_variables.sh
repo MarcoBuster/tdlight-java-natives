@@ -26,20 +26,20 @@ echo "$(realpath .)"
 echo "============================="
 
 # ====== OS Variables
-if [[ "$Agent:OS" == "windows" ]]; then
+if [[ "$AZURE_OS_NAME" == "Windows_NT" ]]; then
   export VCPKG_DIR="$(realpath .)/vcpkg"
   export CMAKE_EXTRA_ARGUMENTS="-A x64 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=$VCPKG_DIR/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows-static -DOPENSSL_USE_STATIC_LIBS=ON"
   export PATH="/c/Python3:$PATH:/c/tools/php74:/c/PHP:/c/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.27.29110/bin/Hostx64/x64:/c/Program Files/OpenJDK/openjdk-11.0.8_10/bin:/c/Program Files/CMake/bin:/c/ProgramData/chocolatey/bin:/c/Program Files/apache-maven-3.6.3/bin:/c/ProgramData/chocolatey/lib/maven/apache-maven-3.6.3/bin:/c/ProgramData/chocolatey/lib/base64/tools:/c/Program Files/NASM"
   export JAVA_HOME="/c/Program Files/OpenJDK/openjdk-11.0.8_10"
   export CPU_CORES=" -- -m"
   export CMAKE_BUILD_TYPE=Release
-elif [[ "$AZURE_OS_NAME" == "osx" ]]; then
+elif [[ "$AZURE_OS_NAME" == "Darwin" ]]; then
   export CMAKE_EXTRA_ARGUMENTS="-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/"
   export PATH="$PATH:$(/usr/libexec/java_home -v 14)"
   export JAVA_HOME="$(/usr/libexec/java_home -v 14)"
   export JAVA_INCLUDE_PATH="$(/usr/libexec/java_home -v 14)/include"
   export CPU_CORES=" -- -j${CPU_CORES_NUM}"
-elif [[ "$AZURE_OS_NAME" == "linux" ]]; then
+elif [[ "$AZURE_OS_NAME" == "Linux" ]]; then
 	if [[ "$CPU_ARCHITECTURE_NAME" = "aarch64" ]]; then
 		export CMAKE_EXTRA_ARGUMENTS=""
 		export CXXFLAGS="-static-libgcc -static-libstdc++"

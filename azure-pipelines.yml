@@ -25,6 +25,8 @@ steps:
     uname -a 
     chmod +x azure/*.sh
   displayName: 'Pre installation'
+  env:
+    AZURE_OS_TYPE: ${Agent.OS}
 
 - script: |
     sudo ./azure/install_dependencies.sh
