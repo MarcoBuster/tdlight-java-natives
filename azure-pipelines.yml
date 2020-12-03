@@ -4,7 +4,8 @@
 # https://aka.ms/yaml
 
 trigger:
-- *
+- master
+- azure-integration
 
 pool:
   vmImage: 'ubuntu-latest'
