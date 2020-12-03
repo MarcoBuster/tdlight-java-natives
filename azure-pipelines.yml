@@ -24,8 +24,6 @@ steps:
 - script: |
     uname -a 
     chmod +x azure/*.sh
-    sudo apt-get update -y
-    sudo apt-get install -y make git zlib1g-dev libssl-dev gperf cmake clang-10 libc++-10-dev libc++abi-10-dev ccache maven python3 python3-pip php7.2-cli openjdk-11-jdk
   displayName: 'Pre installation'
 
 - script: |
