@@ -20,6 +20,9 @@ strategy:
 pool:
   vmImage: $(imageName)
 
+variables:
+  AZURE_OS_NAME: $(Agent.OS)
+
 steps:
 - script: |
     uname -a 
@@ -30,11 +33,11 @@ steps:
     sudo ./azure/install_dependencies.sh
   displayName: 'Install deps'
   env:
-    AZURE_OS_NAME: ${Agent.OS}
+    AZURE_OS_NAME: $(Agent.OS)
 
 - script: |
     sudo ./azure/build.sh
   displayName: 'Build'
   env:
-    AZURE_OS_NAME: ${Agent.OS}
+    AZURE_OS_NAME: $(Agent.OS)
 
